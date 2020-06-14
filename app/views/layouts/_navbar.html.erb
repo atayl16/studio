@@ -1,66 +1,56 @@
-<nav class="navbar navbar-expand-lg" navbar navbar-light style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-md navbar navbar-light style="background-color: #e3f2fd;">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/companies">Studios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Artists</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/artifacts">Featured</a>
+            </li>
+        </ul>
+    </div>
 
-    <div class="container">
-      <%= link_to 'Studio Central', root_path, class: 'navbar-brand' %>
-      <%= fa_icon 'camera' %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Favorites
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/companies">Studios</a>
-              <a class="dropdown-item" href="#">Artists</a>
-              <a class="dropdown-item" href="/artifacts">Masterpieces</a>
-            </div>
-          </li>
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#">Studio Central</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
           <% if current_user %>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class='navbar-nav ml-auto'>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <%= fa_icon 'user' %> <%= current_user.first_name %> <%= current_user.last_name %>
-                    </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item">
-                      <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
-                      <%= fa_icon 'edit' %> Edit profile
-                      <% end %>
-                    </a>
-                    <a class="dropdown-item">
-                      <%= link_to destroy_user_session_path, class: 'dropdown-item' do %>
-                      <%= fa_icon 'sign-out' %> Sign out
-                      <% end %>
-                    </a>
-                  </div>
-                </ul>
-            </div>
-            <% end %>
-            <% if !current_user %>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class='navbar-nav ml-auto'>
-                    <li class='nav-item'>
-                        <%= link_to("Sign Up", new_user_registration_path,
-                            class: "nav-link", method: :get)%>
-                    </li>
-                    <li class='nav-item'>
-                        <%= link_to("Sign In", new_user_session_path,
-                            class: "nav-link", method: :get)%>
-                    </li>
-                </ul>
-            </div>
-            <% end %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= fa_icon 'user' %> <%= current_user.first_name %> <%= current_user.last_name %>
+                </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item">
+                  <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+                  <%= fa_icon 'edit' %> Edit profile
+                  <% end %>
+                </a>
+                <a class="dropdown-item">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                  <%= fa_icon 'sign-out' %> Sign out
+                  <% end %>
+                </a>
+              </div>
+            </li>
+          <% end %>
+          <% if !current_user %>
+            <li class='nav-item'>
+                <%= link_to("Sign Up", new_user_registration_path,
+                    class: "nav-link", method: :get)%>
+            </li>
+            <li class='nav-item'>
+                <%= link_to("Sign In", new_user_session_path,
+                    class: "nav-link", method: :get)%>
+            </li>
+          <% end %>
+        </ul>
     </div>
 </nav>
