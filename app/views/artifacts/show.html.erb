@@ -6,13 +6,7 @@
 </p>
 
 <p>
-  <strong>Key:</strong>
-  <%= @artifact.key %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @artifact.user %>
+  <%= image_tag @artifact.image.url(:square) %>
 </p>
 
 <%= link_to 'Edit', edit_artifact_path(@artifact) %> |

@@ -1,17 +1,11 @@
 class Artifact < ApplicationRecord
-  belongs_to :user
-  attr_accessor :upload
+  belongs_to :user, :optional => true
+  has_attached_file :image, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
 
-  MAX_FILESIZE = 5.megabytes
-  validates_presence_of :name, :upload
-  validates_uniqueness_of :name
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-  validate :uploaded_file_size
-
-  private
-  def uploaded_fize_size
-    if upload 
-      errors.add(:upload, "File size must be less than #{self.class::MAX_FILESIZE}") unless upload.size <= self.class::MAX_FILESIZE
-    end
-  end
 end
