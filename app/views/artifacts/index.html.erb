@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Photo</th>
       <th>Name</th>
       <th>Key</th>
       <th>User</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @artifacts.each do |artifact| %>
       <tr>
+        <td><%= image_tag artifact.image.url(:square) %></td>
         <td><%= artifact.name %></td>
         <td><%= artifact.key %></td>
         <td><%= artifact.user %></td>

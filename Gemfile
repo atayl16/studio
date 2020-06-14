@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
@@ -16,15 +17,17 @@ gem 'prettier'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem "bootstrap_form", "~> 4.0"
+gem "font-awesome-rails"
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pundit'
 gem 'paperclip'
 gem 'aws-sdk-s3'
+gem 'capybara', groups: [:development, :test]
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.0'
-  gem 'capybara'
   gem 'database_cleaner'
 end
 
@@ -36,7 +39,6 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end

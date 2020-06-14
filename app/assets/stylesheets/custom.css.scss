@@ -1,0 +1,25 @@
+.user-name {
+    margin-top: 3.5%;
+    padding-right: 5px;
+}
+
+.jumbotron {
+  background-image: url(asset-path('photo.jpg'));
+  background-size: cover;
+  height: 470px;
+  margin-top: 15px;
+}
+
+.jumbotron h1 {
+  color: white;
+  text-align: left;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.jumbotron h4 {
+  color: white;
+  font-size: 1.1em;
+  text-align: left;
+}
