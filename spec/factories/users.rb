@@ -4,7 +4,8 @@ FactoryBot.define do
     last_name  { "Doe" }
     type { nil }
     email {"john.doe@test.com"}
-    user_id {"1"}
+    password {"asdfghjk"}
+    password_confirmation {"asdfghjk"}
   end
 
   factory :AdminUser, class: User do
@@ -12,6 +13,7 @@ FactoryBot.define do
     last_name  { "Admin" }
     type { AdminUser }
     email {"jane.doe@test.com"}
-    user_id {"2"}
+    password {"asdfghjk"}
+    password_confirmation {"asdfghjk"}
   end
 end

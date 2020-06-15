@@ -1,25 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Artifacts</h1>
+<h1>Masterpieces</h1>
+
+
+<div class="card-deck">
+  <% @artifacts.each do |artifact| %>
+    <div class="card-text-center border border-primary" style="width: 15rem; margin: 6px; padding:4px;">
+      <%= image_tag artifact.image.url(:square) %>
+      <strong class="card-text"><%= artifact.name %></strong>
+      <p class="card-text"><%= truncate(artifact.description, length: 55, separator: ' ') %></p>
+        <div class="card-footer">
+         <a <%= link_to 'Show', artifact %> </a>
+         <a <%= link_to 'Edit', edit_artifact_path(artifact) %> </a>
+         <a <%= link_to 'Destroy', artifact, method: :delete, data: { confirm: 'Are you sure?' } %> </a>
+        </div>
+    </div>
+  <% end %>
+</div>
+
 
 <table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Key</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @artifacts.each do |artifact| %>
       <tr>
         <td><%= image_tag artifact.image.url(:square) %></td>
         <td><%= artifact.name %></td>
-        <td><%= artifact.key %></td>
-        <td><%= artifact.user %></td>
+        <td><%= artifact.description %></td>
         <td><%= link_to 'Show', artifact %></td>
         <td><%= link_to 'Edit', edit_artifact_path(artifact) %></td>
         <td><%= link_to 'Destroy', artifact, method: :delete, data: { confirm: 'Are you sure?' } %></td>

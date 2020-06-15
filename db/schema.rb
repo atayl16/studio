@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_14_151410) do
+ActiveRecord::Schema.define(version: 2020_06_15_201910) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_06_14_151410) do
     t.string "image_content_type"
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
+    t.text "description"
     t.index ["user_id"], name: "index_artifacts_on_user_id"
   end
 
