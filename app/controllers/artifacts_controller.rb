@@ -19,6 +19,7 @@ class ArtifactsController < ApplicationController
 
   # GET /artifacts/1/edit
   def edit
+    authorize @artifact
   end
 
   # POST /artifacts
@@ -40,6 +41,7 @@ class ArtifactsController < ApplicationController
   # PATCH/PUT /artifacts/1
   # PATCH/PUT /artifacts/1.json
   def update
+    authorize @artifact
     respond_to do |format|
       if @artifact.update(artifact_params)
         format.html { redirect_to @artifact, notice: 'Artifact was successfully updated.' }
