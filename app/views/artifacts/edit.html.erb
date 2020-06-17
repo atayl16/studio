@@ -1,6 +1,8 @@
-<h1>Editing Artifact</h1>
-
-<%= render 'form', artifact: @artifact %>
-
-<%= link_to 'Show', @artifact %> |
-<%= link_to 'Back', artifacts_path %>
+<div class="panel">
+  <div class="panel-body">
+    <h3>Fix Your Masterpiece</h3>
+    <%= render 'form', artifact: @artifact %>
+    <%= link_to 'Show', @artifact %> |
+    <%= link_to 'Back', artifacts_path %>
+  </div>
+</div>

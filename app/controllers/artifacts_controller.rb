@@ -19,7 +19,7 @@ class ArtifactsController < ApplicationController
 
   # GET /artifacts/1/edit
   def edit
-    authorize @artifact
+    #authorize @artifact
   end
 
   # POST /artifacts
@@ -29,7 +29,7 @@ class ArtifactsController < ApplicationController
 
     respond_to do |format|
       if @artifact.save
-        format.html { redirect_to @artifact, notice: 'Artifact was successfully created.' }
+        format.html { redirect_to @artifact, notice: 'Your masterpiece was successfully created.' }
         format.json { render :show, status: :created, location: @artifact }
       else
         format.html { render :new }
@@ -41,10 +41,10 @@ class ArtifactsController < ApplicationController
   # PATCH/PUT /artifacts/1
   # PATCH/PUT /artifacts/1.json
   def update
-    authorize @artifact
+    #authorize @artifact
     respond_to do |format|
       if @artifact.update(artifact_params)
-        format.html { redirect_to @artifact, notice: 'Artifact was successfully updated.' }
+        format.html { redirect_to @artifact, notice: 'Your masterpiece was successfully updated.' }
         format.json { render :show, status: :ok, location: @artifact }
       else
         format.html { render :edit }

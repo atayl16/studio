@@ -1,11 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Masterpieces</h1>
-
+<%= link_to 'Create Your Own!', new_artifact_path %>
 
 <div class="card-deck">
   <% @artifacts.each do |artifact| %>
-    <div class="card-text-center border border-primary" style="width: 15rem; margin: 6px; padding:4px;">
+    <div class="card-text-center border border-primary" style="width: 15rem; margin: 7px; padding:6px;">
       <%= image_tag artifact.image.url(:square) %>
       <strong class="card-text"><%= artifact.name %></strong>
       <p class="card-text"><%= truncate(artifact.description, length: 55, separator: ' ') %></p>
@@ -18,22 +16,4 @@
   <% end %>
 </div>
 
-
-<table>
-  <tbody>
-    <% @artifacts.each do |artifact| %>
-      <tr>
-        <td><%= image_tag artifact.image.url(:square) %></td>
-        <td><%= artifact.name %></td>
-        <td><%= artifact.description %></td>
-        <td><%= link_to 'Show', artifact %></td>
-        <td><%= link_to 'Edit', edit_artifact_path(artifact) %></td>
-        <td><%= link_to 'Destroy', artifact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <br>
-
-<%= link_to 'New Artifact', new_artifact_path %>

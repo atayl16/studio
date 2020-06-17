@@ -7,15 +7,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
   </head>
 
   <body>
+    <%= render "layouts/navbar" %>
     <div class="container">
     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= render "layouts/navbar" %>
     <%= yield %>
-
     </div>
   </body>
 </html>

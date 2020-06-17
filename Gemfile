@@ -24,6 +24,7 @@ gem 'pundit'
 gem 'paperclip'
 gem 'aws-sdk-s3'
 gem 'capybara', groups: [:development, :test]
+gem 'stripe-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
