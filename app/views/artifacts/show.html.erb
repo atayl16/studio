@@ -1,11 +1,12 @@
-<p>
-  <strong>Name:</strong>
-  <%= @artifact.name %>
-</p>
-
-<p>
-  <%= image_tag @artifact.image.url(:square) %>
-</p>
-
-<%= link_to 'Edit', edit_artifact_path(@artifact) %> |
-<%= link_to 'Back', artifacts_path %>
+<div class="card text-center">
+   <img class="card-img-top showpage-image"<%= image_tag @artifact.image.url %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @artifact.name %></h5>
+      <p class="card-text"><%= @artifact.description %></p>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-info"><%= link_to 'Edit', edit_artifact_path(@artifact), :class => "btn"%></button>
+        <button type="button" class="btn btn-info"><%= link_to 'Delete', @artifact, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn" %></button>
+        <button type="button" class="btn btn-info"><%= link_to 'Back', artifacts_path, :class => "btn" %></button>
+      </div>
+    </div>
+</div>

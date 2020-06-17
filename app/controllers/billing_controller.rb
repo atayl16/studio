@@ -37,6 +37,33 @@ class BillingController < ApplicationController
   end
 
   def success
+    @plans = Stripe::Plan.list.data
   end
+
+  def subscribe
+      if current_user.stripe_id.nil?
+        redirect_to success_path, :flash => {:error => 'Firstly you need to enter your card'}
+        return
+      end
+      #if there is no card
+
+      customer = Stripe::Customer.new current_user.stripe_id
+      #we define our customer
+
+      subscriptions = Stripe::Subscription.list(customer: customer.id)
+      subscriptions.each do |subscription|
+        subscription.delete
+      end
+      #we delete all subscription that the customer has. We do this because we don't want that our customer to have multiple subscriptions
+
+      plan_id = params[:plan_id]
+      subscription = Stripe::Subscription.create({
+                                                     customer: customer,
+                                                     items: [{plan: plan_id}], })
+   #we are creating a new subscription with the plan_id we took from our form
+
+      subscription.save
+      redirect_to success_path
+    end
 
 end
