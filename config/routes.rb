@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :artifacts
+  resources :artifacts do
+    member do
+      put "like", to:"artifacts#upvote"
+    end
+  end
   resources :companies
   get 'home/index'
   devise_for :users

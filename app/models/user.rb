@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :artifacts, dependent: :destroy
   has_many :companies
+  acts_as_voter
 end

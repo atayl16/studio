@@ -1,6 +1,6 @@
 class ArtifactsController < ApplicationController
-  before_action :set_artifact, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_artifact, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /artifacts
   # GET /artifacts.json
   def index
@@ -62,6 +62,12 @@ class ArtifactsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upvote
+    @artifact.upvote_by current_user
+    redirect_back fallback_location: root_path
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

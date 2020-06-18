@@ -8,7 +8,10 @@
       <strong class="card-text"><%= artifact.name %></strong>
       <p class="card-text"><%= truncate(artifact.description, length: 55, separator: ' ') %></p>
         <div class="card-footer">
-          Upvotes will be here
+          <button type="button" class="fa fa-thumbs-up"><%= link_to 'Like', like_artifact_path(artifact), method: :put,  :class => "btn"%></button>
+          <div class="fa thumbs-up">
+            <%=artifact.get_upvotes.size %>
+          </div>
         </div>
     </div>
   <% end %>
