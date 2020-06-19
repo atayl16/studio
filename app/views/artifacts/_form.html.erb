@@ -16,23 +16,16 @@
       <%= form.text_field :name %>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <div class="input-group">
-      <label class="input-group-btn">
-          <span class="btn btn-info btn-sm">
-              Browse <input id="my-file-selector" type="file" style="display:none;" onchange="$('#upload-file-info').val($(this).val());">
-          </span>
-      </label>
-      <input type="text" class="form-control" id="upload-file-info" readonly>
+    <div class="field">
+      <%= form.text_field :description %>
     </div>
 
     <div class="field">
-      <%= form.text_field :description %>
+      <%= form.file_field :image %>
     </div>
 
     <div class="actions">
       <%= form.submit "Save" %>
     </div>
-
 </div>
 <% end %>

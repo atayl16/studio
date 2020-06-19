@@ -18,7 +18,8 @@
 //= require turbolinks
 //= require_tree .
 
-$('.custom-file-input').on('change', function() {
-   let fileName = $(this).val().split('\\').pop();
-   $(this).next('.custom-file-label').addClass("selected").html(fileName);
+$(document).on('ready turbolinks:load', function() {
+  $('.custom-file-input').change(function(){
+    $('.custom-file-label').text(this.value);
+  });
 });
