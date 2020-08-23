@@ -100,7 +100,7 @@ Rails.application.configure do
     s3_region: ENV.fetch('AWS_REGION'),
   }
 }
-  config.active_storage.service = :amazon
+#  config.active_storage.service = :amazon
   config.stripe.secret_key = ENV.fetch('secret_key')
   config.stripe.publishable_key = ENV.fetch('publishable_key')
 end
