@@ -4,34 +4,35 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
-gem 'dotenv-rails', groups: [:development, :test]
-gem 'sqlite3'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap', '~> 4.5.0'
+gem "bootstrap_form", "~> 4.0"
+gem 'coffee-rails', '~> 4.2'
+gem 'devise'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
+gem 'sassc', '~>2.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'devise'
 gem 'prettier'
-gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'devise-bootstrap-views', '~> 1.0'
-gem "bootstrap_form", "~> 4.0"
 gem "font-awesome-rails"
-gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pundit'
 gem 'paperclip'
 gem 'aws-sdk-s3'
-gem 'capybara', groups: [:development, :test]
 gem 'stripe-rails'
 gem 'acts_as_votable'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'dotenv-rails'
+  gem 'capybara'
 end
 
 group :development do
