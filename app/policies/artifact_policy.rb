@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArtifactPolicy < ApplicationPolicy
   def update?
     record.user_id == user.id || user.type == 'AdminUser'

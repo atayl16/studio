@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ArtifactsController < ApplicationController
-  before_action :set_artifact, only: [:show, :edit, :update, :destroy, :upvote]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_artifact, only: %i[show edit update destroy upvote]
+  before_action :authenticate_user!, except: %i[index show]
   # GET /artifacts
   # GET /artifacts.json
   def index
@@ -9,8 +11,7 @@ class ArtifactsController < ApplicationController
 
   # GET /artifacts/1
   # GET /artifacts/1.json
-  def show
-  end
+  def show; end
 
   # GET /artifacts/new
   def new
@@ -19,7 +20,7 @@ class ArtifactsController < ApplicationController
 
   # GET /artifacts/1/edit
   def edit
-    #authorize @artifact
+    # authorize @artifact
   end
 
   # POST /artifacts
@@ -41,7 +42,7 @@ class ArtifactsController < ApplicationController
   # PATCH/PUT /artifacts/1
   # PATCH/PUT /artifacts/1.json
   def update
-    #authorize @artifact
+    # authorize @artifact
     respond_to do |format|
       if @artifact.update(artifact_params)
         format.html { redirect_to @artifact, notice: 'Your masterpiece was successfully updated.' }
@@ -68,15 +69,15 @@ class ArtifactsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_artifact
-      @artifact = Artifact.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def artifact_params
-      params.require(:artifact).permit(:name, :key, :user_id, :image, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_artifact
+    @artifact = Artifact.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def artifact_params
+    params.require(:artifact).permit(:name, :key, :user_id, :image, :description)
+  end
 end
