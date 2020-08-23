@@ -101,6 +101,6 @@ Rails.application.configure do
   }
 }
   config.active_storage.service = :amazon
-  config.stripe.secret_key = Rails.application.credentials.stripe[:secret_key]
-  config.stripe.publishable_key = Rails.application.credentials.stripe[:publishable_key]
+  config.stripe.secret_key = ENV.fetch('secret_key')
+  config.stripe.publishable_key = ENV.fetch('publishable_key')
 end
