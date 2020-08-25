@@ -6,6 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :artifacts, dependent: :destroy
-  has_many :companies
+  has_one :company
   acts_as_voter
 end

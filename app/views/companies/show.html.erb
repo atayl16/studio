@@ -3,5 +3,13 @@
   <strong><%= @company.name %></strong>
 </p>
 
+<% @company.artifacts.each if @company.artifacts.any? do |art| %>
+  <div class="card text-center">
+     <img class="card-img-top showpage-image"<%= image_tag art.image.url %>
+      <div class="card-body">
+        <h5 class="card-title"><%= art.name %></h5>
+        <p class="card-text"><%= art.description %> <br></p>
+<% end %>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

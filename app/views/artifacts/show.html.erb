@@ -2,7 +2,17 @@
    <img class="card-img-top showpage-image"<%= image_tag @artifact.image.url %>
     <div class="card-body">
       <h5 class="card-title"><%= @artifact.name %></h5>
-      <p class="card-text"><%= @artifact.description %></p>
+      <p class="card-text"><%= @artifact.description %> <br> 
+        user_id: <%= @artifact.user_id %> <br>
+        created_at: <%= @artifact.created_at %> <br>
+        updated_at: <%= @artifact.updated_at %> <br>
+        image_file_name: <%= @artifact.image_file_name %> <br>
+        image_content_type: <%= @artifact.image_content_type %> <br>
+        image_file_size: <%= @artifact.image_file_size %> <br>
+        image_updated_at: <%= @artifact.image_updated_at %> <br>
+        description: <%= @artifact.description %> <br>
+        company_id: <%= @artifact.company_id %> <br>
+      </p>
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-info"><%= link_to 'Edit', edit_artifact_path(@artifact), :class => "btn"%></button>
         <button type="button" class="btn btn-info"><%= link_to 'Delete', @artifact, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn" %></button>

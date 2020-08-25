@@ -6,7 +6,9 @@ Rails.application.routes.draw do
       put 'like', to: 'artifacts#upvote'
     end
   end
-  resources :companies
+  resources :companies do
+    resources :artifacts, only: [:show]
+  end
   get 'home/index'
   devise_for :users
   root to: 'home#index'

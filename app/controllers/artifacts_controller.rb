@@ -3,30 +3,24 @@
 class ArtifactsController < ApplicationController
   before_action :set_artifact, only: %i[show edit update destroy upvote]
   before_action :authenticate_user!, except: %i[index show]
-  # GET /artifacts
-  # GET /artifacts.json
+
   def index
     @artifacts = Artifact.all
   end
 
-  # GET /artifacts/1
-  # GET /artifacts/1.json
   def show; end
 
-  # GET /artifacts/new
   def new
     @artifact = Artifact.new
   end
 
-  # GET /artifacts/1/edit
   def edit
-    # authorize @artifact
   end
 
-  # POST /artifacts
-  # POST /artifacts.json
   def create
     @artifact = Artifact.new(artifact_params)
+    @artifact.user_id = current_user.id
+    @artifact.company_id = current_user.company_id
 
     respond_to do |format|
       if @artifact.save
@@ -78,6 +72,6 @@ class ArtifactsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def artifact_params
-    params.require(:artifact).permit(:name, :key, :user_id, :image, :description)
+    params.require(:artifact).permit(:name, :key, :user_id, :image, :description, :company_id)
   end
 end
