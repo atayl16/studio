@@ -4,21 +4,27 @@ class ArtifactsController < ApplicationController
   before_action :set_artifact, only: %i[show edit update destroy upvote]
   before_action :authenticate_user!, except: %i[index show]
 
+  after_action :verify_authorized, only: %i[edit update destroy]
+  after_action :verify_policy_scoped, only: :index
+
   def index
-    @artifacts = Artifact.all
+    @artifacts = policy_scope(Artifact).reverse
   end
 
   def show; end
 
   def new
-    @artifact = Artifact.new
+    @artifact = current_user.artifacts.new
+    authorize @artifact
   end
 
-  def edit
+  def edit;
+    authorize @artifact
   end
 
   def create
-    @artifact = Artifact.new(artifact_params)
+    @artifact = current_user.artifacts.create(artifact_params)
+    authorize @artifact
     @artifact.user_id = current_user.id
     @artifact.company_id = current_user.company_id
 
@@ -33,10 +39,8 @@ class ArtifactsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /artifacts/1
-  # PATCH/PUT /artifacts/1.json
   def update
-    # authorize @artifact
+    authorize @artifact
     respond_to do |format|
       if @artifact.update(artifact_params)
         format.html { redirect_to @artifact, notice: 'Your masterpiece was successfully updated.' }
@@ -48,10 +52,9 @@ class ArtifactsController < ApplicationController
     end
   end
 
-  # DELETE /artifacts/1
-  # DELETE /artifacts/1.json
   def destroy
     @artifact.destroy
+    authorize @artifact
     respond_to do |format|
       format.html { redirect_to artifacts_url, notice: 'Artifact was successfully destroyed.' }
       format.json { head :no_content }

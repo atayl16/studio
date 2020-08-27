@@ -1,4 +1,4 @@
-class ArtifactPolicy < ApplicationPolicy
+class CompanyPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -7,9 +7,10 @@ class ArtifactPolicy < ApplicationPolicy
 
   def update? ; user_is_owner_of_record? ; end
   def destroy? ; user_is_owner_of_record? ; end
+
   private
 
   def user_is_owner_of_record?
-    user == @record.user
+    user.id == @record.user_id
   end
 end

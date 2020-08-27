@@ -11,5 +11,7 @@
         <p class="card-text"><%= art.description %> <br></p>
 <% end %>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+
+<button type="button" class="btn btn-info"><%= link_to 'Edit', edit_company_path(@company), :class => "btn" if policy(@company).update? %></button>
+<button type="button" class="btn btn-info"><%= link_to 'Delete', @company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn"  if policy(@company).destroy? %></button>
+<button type="button" class="btn btn-info"><%= link_to 'Back', companies_path, :class => "btn"%></button>

@@ -2,29 +2,27 @@
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
-  # GET /companies
-  # GET /companies.json
+  after_action :verify_authorized, except: %i[index show new create]
+  after_action :verify_policy_scoped, only: %i[index]
+
   def index
-    @companies = Company.all
+    @companies = policy_scope(Company).reverse
   end
 
-  # GET /companies/1
-  # GET /companies/1.json
   def show; end
 
-  # GET /companies/new
   def new
     @company = Company.new
   end
 
-  # GET /companies/1/edit
-  def edit; end
+  def edit;
+    authorize @company
+  end
 
-  # POST /companies
-  # POST /companies.json
   def create
-    @company = Company.new(company_params)
+    @company = Company.create(company_params)
     @company.user_id = current_user.id
 
     respond_to do |format|
@@ -38,9 +36,8 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /companies/1
-  # PATCH/PUT /companies/1.json
   def update
+    authorize @company
     respond_to do |format|
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
@@ -52,10 +49,9 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # DELETE /companies/1
-  # DELETE /companies/1.json
   def destroy
     @company.destroy
+    authorize @company
     respond_to do |format|
       format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
