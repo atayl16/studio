@@ -5,6 +5,6 @@ class Company < ApplicationRecord
   has_many :artifacts
 
   after_create do
-    self.user.update(:company_id => id)
+    self.user.update(:company_id => id, :type => Owner)
   end
 end

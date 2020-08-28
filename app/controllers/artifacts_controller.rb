@@ -15,7 +15,6 @@ class ArtifactsController < ApplicationController
 
   def new
     @artifact = current_user.artifacts.new
-    authorize @artifact
   end
 
   def edit;
@@ -24,7 +23,6 @@ class ArtifactsController < ApplicationController
 
   def create
     @artifact = current_user.artifacts.create(artifact_params)
-    authorize @artifact
     @artifact.user_id = current_user.id
     @artifact.company_id = current_user.company_id
 

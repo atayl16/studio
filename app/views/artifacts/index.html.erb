@@ -5,6 +5,7 @@
   <% @artifacts.each do |artifact| %>
     <div class="card-text-center border border-primary" style="width: 15rem; margin: 7px; padding:6px;">
       <%= link_to (image_tag artifact.image.url(:square)), artifact %>
+      <br>
       <strong class="card-text"><%= artifact.name %></strong>
       <p class="card-text"><%= truncate(artifact.description, length: 55, separator: ' ') %></p>
         <div class="card-footer">
