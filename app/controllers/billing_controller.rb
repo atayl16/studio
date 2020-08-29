@@ -48,7 +48,7 @@ class BillingController < ApplicationController
     subscription = Stripe::Subscription.create({customer: customer, items: [{ plan: plan_id }]
       })
     subscription.save
-    current_user.assign_attributes(stripe_subscription_id: subscription.id)
+    current_user.update(stripe_subscription_id: subscription.id)
     redirect_to new_company_path, notice: 'Thanks for subscribing!'
   end
 end
