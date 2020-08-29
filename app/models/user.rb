@@ -8,4 +8,15 @@ class User < ApplicationRecord
   has_many :artifacts, dependent: :destroy
   has_one :company
   acts_as_voter
+
+  def stripe_customer
+    return Stripe::Customer.retrieve(stripe_id) if stripe_id?
+    stripe_customer = Stripe::Customer.create(email: email)
+    update(stripe_id: stripe_customer.id)
+    stripe_customer
+  end
+
+  def subscribed?
+    stripe_subscription_id?
+  end
 end

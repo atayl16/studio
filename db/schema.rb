@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_191417) do
+ActiveRecord::Schema.define(version: 2020_08_29_161142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 2020_08_23_191417) do
     t.datetime "image_updated_at"
     t.text "description"
     t.bigint "company_id"
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
     t.index ["company_id"], name: "index_artifacts_on_company_id"
     t.index ["user_id"], name: "index_artifacts_on_user_id"
   end
@@ -37,6 +40,14 @@ ActiveRecord::Schema.define(version: 2020_08_23_191417) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "plan_id"
+    t.integer "user_id"
+    t.boolean "active", default: true
+    t.datetime "current_period_ends_at"
+    t.string "stripe_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_191417) do
     t.string "last_name"
     t.string "stripe_id"
     t.bigint "company_id"
+    t.string "stripe_subscription_id"
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

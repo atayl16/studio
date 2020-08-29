@@ -26,7 +26,6 @@ class BillingController < ApplicationController
 
       customer = Stripe::Customer.new current_user.stripe_id
       customer.source = card_token
-      # attach the card to the stripe customer
       customer.save
 
       format.html { redirect_to success_path }
@@ -39,23 +38,17 @@ class BillingController < ApplicationController
 
   def subscribe
     if current_user.stripe_id.nil?
-      redirect_to success_path, flash: { error: 'Please enter your card' }
+      redirect_to create_card_path, flash: { error: 'Please enter your card' }
       return
     end
-
     customer = Stripe::Customer.new current_user.stripe_id
-
     subscriptions = Stripe::Subscription.list(customer: customer.id)
     subscriptions.each(&:delete)
-    # delete all subscription that the customer has. We do this because we don't want our customer to have multiple subscriptions
-
     plan_id = params[:plan_id]
-    subscription = Stripe::Subscription.create({
-                                                 customer: customer,
-                                                 items: [{ plan: plan_id }]
-                                               })
-
+    subscription = Stripe::Subscription.create({customer: customer, items: [{ plan: plan_id }]
+      })
     subscription.save
-    redirect_to new_company_path
+    current_user.assign_attributes(stripe_subscription_id: subscription.id)
+    redirect_to new_company_path, notice: 'Thanks for subscribing!'
   end
 end

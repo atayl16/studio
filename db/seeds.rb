@@ -27,3 +27,9 @@ end
 Company.create(name: 'GoT', user_id: '1')
 Company.create(name: 'LotR', user_id: '2')
 Company.create(name: 'SS', user_id: '6')
+
+Stripe::Plan.create(name: 'Subscriber',
+                    id: 'subscriber',
+                    interval: 'month',
+                    currency: 'usd',
+                    amount: '1000')

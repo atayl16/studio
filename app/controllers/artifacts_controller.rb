@@ -8,7 +8,7 @@ class ArtifactsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @artifacts = policy_scope(Artifact).reverse
+    @artifacts = policy_scope(Artifact).order(cached_votes_total: :asc).reverse
   end
 
   def show; end

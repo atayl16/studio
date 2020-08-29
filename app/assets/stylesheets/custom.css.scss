@@ -34,8 +34,6 @@
 }
 
 .showpage-image{
-  max-height: 800px;
-  max-width: 800px;
-  overflow: hidden;
-  margin: auto;
+  height: 40vw;
+  object-fit: cover;
 }

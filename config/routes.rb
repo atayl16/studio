@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   get 'home/index'
   devise_for :users
   root to: 'home#index'
+  get '/users' => 'users#index'
   get 'billing/' => 'billing#index', as: :billing
   get '/card/new' => 'billing#new_card', as: :add_payment_method
   post '/card' => 'billing#create_card', as: :create_payment_method
