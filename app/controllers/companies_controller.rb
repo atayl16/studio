@@ -3,7 +3,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
-  before_action :check_subscription, only: %i[edit update]
+  before_action :redirect_to_company, :confirm_subscription?, only: %i[edit update]
 
   after_action :verify_authorized, except: %i[index show new create]
   after_action :verify_policy_scoped, only: %i[index]
@@ -71,7 +71,11 @@ class CompaniesController < ApplicationController
     params.require(:company).permit(:name, :user_id)
   end
 
-  def check_subscription
-    current_user.stripe_subscription_id  
+  def confirm_subscription
+    @current_user.stripe_subscription_id?
+  end
+
+  def redirect_to_company
+    redirect_to @company, notice: 'You do not have a subscription.'
   end
 end
