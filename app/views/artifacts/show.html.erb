@@ -14,9 +14,9 @@
         company_id: <%= @artifact.company_id %> <br>
       </p>
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-info"><%= link_to 'Edit', edit_artifact_path(@artifact), :class => "btn" if policy(@artifact).update? %></button>
-        <button type="button" class="btn btn-info"><%= link_to 'Delete', @artifact, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn"  if policy(@artifact).destroy? %></button>
-        <button type="button" class="btn btn-info"><%= link_to 'Back', artifacts_path, :class => "btn"%></button>
+        <%= link_to 'Edit', edit_artifact_path(@artifact) if policy(@artifact).update? %>
+        <%= link_to '   |  Delete   |  ', @artifact, method: :delete, data: { confirm: 'Are you sure?' }  if policy(@artifact).destroy? %>
+        <%= link_to 'Back', artifacts_path %>
       </div>
     </div>
 </div>

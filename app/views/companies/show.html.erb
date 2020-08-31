@@ -22,6 +22,6 @@
 
   <br>
 
-<button type="button" class="btn btn-info"><%= link_to 'Edit', edit_company_path(@company), :class => "btn" if policy(@company).update? %></button>
-<button type="button" class="btn btn-info"><%= link_to 'Delete', @company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn"  if policy(@company).destroy? %></button>
-<button type="button" class="btn btn-info"><%= link_to 'Back', companies_path, :class => "btn"%></button>
+<%= link_to 'Edit', edit_company_path(@company) if policy(@company).update? %>
+<%= link_to '   |  Delete   |  ', @company, method: :delete, data: { confirm: 'Are you sure?' } if policy(@company).destroy? %>
+<%= link_to 'Back', companies_path %>
